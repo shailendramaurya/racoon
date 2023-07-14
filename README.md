@@ -11,6 +11,8 @@ Github Profile: [shailendramaurya](https://github.com/shailendramaurya)
 
 Racoon is a YouTube downloader that allows you to easily download videos from YouTube. It is built using HTML, JS with mdb library, and utilizes a piped API and PHP backend for handling the downloading process.
 
+** Currently in beta, & UI is not well optimised for desktops **
+
 ## Donations
 
 If you find Racoon helpful, consider supporting the project by making a donation. Your contribution is greatly appreciated.
@@ -26,6 +28,8 @@ If you find Racoon helpful, consider supporting the project by making a donation
 ## Features Yet to Implement
 
 - More quality options for videos by merging streams
+- Better UI for desktops
+- PWA with getting YouTube URLs via share menu
 
 ## Contributing
 
