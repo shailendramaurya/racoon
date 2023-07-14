@@ -2,9 +2,9 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('racoon-cache').then(function(cache) {
       return cache.addAll([
-'mdb.min.js',
-'mdb.min.css',
-'sweetalert2.js',
+'js/mdb.min.js',
+'css/mdb.min.css',
+'js/sweetalert2.js',
       ]);
     })
   );
