@@ -99,7 +99,7 @@ modal.innerHTML=""
 modal.appendChild(loader);
 
   dModal.toggle();
-  const upload_api="http://f0841623.xsph.ru/api.php?link="+encodeURIComponent(url);
+  const upload_api="https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent("http://f0841623.xsph.ru/api.php?link="+encodeURIComponent(url));
   fetch(upload_api)
   .then(response=>response.json())
   .then(data=>{
@@ -113,7 +113,7 @@ modal.appendChild(loader);
 var fileUrl = "http://f0841623.xsph.ru/uploads/"+data.filename;
 
 var a = document.createElement("a");
-a.href="http://f0841623.xsph.ru/file.php?fileName="+name+"."+format+"&fileUrl="+fileUrl;
+a.href="https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent("http://f0841623.xsph.ru/file.php?fileName="+name+"."+format+"&fileUrl="+fileUrl);
 a.download=""
 document.body.appendChild(a);
 
