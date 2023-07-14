@@ -1,4 +1,4 @@
-var api = "https://pipedapi.kavin.rocks/streams/";
+    var api = "https://pipedapi.kavin.rocks/streams/";
 
 const dModal = new mdb.Modal(document.getElementById("exampleModal"));
 
@@ -154,8 +154,10 @@ function downloader(url, name, format) {
           });
           dModal.hide();
           // Trigger the download
-          a.click();
-          document.body.removeChild(a);
+          setTimeout(function() {
+  a.click();
+  document.body.removeChild(a);
+}, 200);
         });
       } else {
         modal.innerHTML = JSON.stringify(data);
