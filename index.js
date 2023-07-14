@@ -44,6 +44,21 @@ function about(){
 }) 
 }
 
+function removeEmojis(url) {
+  // Replace '%20' with a space
+  url = url.replace(/%20/g, ' ');
+
+  // Remove emojis
+  var regex = /[\uD800-\uDBFF][\uDC00-\uDFFF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
+  url = url.replace(regex, '');
+
+  // Remove any remaining spaces
+  url = url.replace(/\s/g, '');
+
+  return url;
+}
+
+
 async function getServer(){
 await fetch('https://piped-instances.kavin.rocks')
 	.then(res => res.json())
@@ -92,7 +107,6 @@ function downloader(url, name, format) {
   <span class="visually-hidden">Loading...</span>
 </div>`;
 
-console.log(url);
 
 const modal = document.querySelector(".modal-body");
 modal.innerHTML=""
@@ -113,8 +127,9 @@ modal.appendChild(loader);
 var fileUrl = "http://f0841623.xsph.ru/uploads/"+data.filename;
 
 var a = document.createElement("a");
-a.href="http://f0841623.xsph.ru/file.php?fileName="+name+"."+format+"&fileUrl="+fileUrl;
+a.href="http://f0841623.xsph.ru/file.php?fileName="+removeEmojis(name)+"."+format+"&fileUrl="+fileUrl;
 a.download=""
+a.setAttribute("target","_blank");
 document.body.appendChild(a);
 
       const Toast = Swal.mixin({
