@@ -56,6 +56,19 @@ function removeEmojis(url) {
   return url;
 }
 
+function generateRandomStr(length) {
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+
+  for (var i = 0; i < length; i++) {
+    var randomIndex = Math.floor(Math.random() * charactersLength);
+    result += characters.charAt(randomIndex);
+  }
+
+  return result;
+}
+
 async function getServer() {
   await fetch("https://piped-instances.kavin.rocks")
     .then((res) => res.json())
@@ -131,9 +144,8 @@ function downloader(url, name, format) {
             "." +
             format +
             "&fileUrl=" +
-            fileUrl;
+            fileUrl+"&nocache="+generateRandomStr(5);
           a.download = "";
-          a.setAttribute("target", "_blank");
           document.body.appendChild(a);
 
           const Toast = Swal.mixin({
