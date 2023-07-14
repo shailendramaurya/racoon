@@ -113,7 +113,7 @@ modal.appendChild(loader);
 var fileUrl = "http://f0841623.xsph.ru/uploads/"+data.filename;
 
 var a = document.createElement("a");
-a.href="https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent("http://f0841623.xsph.ru/file.php?fileName="+name+"."+format+"&fileUrl="+fileUrl);
+a.href="http://f0841623.xsph.ru/file.php?fileName="+name+"."+format+"&fileUrl="+fileUrl;
 a.download=""
 document.body.appendChild(a);
 
