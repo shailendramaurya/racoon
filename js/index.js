@@ -1,4 +1,4 @@
-    var api = "https://pipedapi.kavin.rocks/streams/";
+var api = "https://pipedapi.kavin.rocks/streams/";
 
 const dModal = new mdb.Modal(document.getElementById("exampleModal"));
 
@@ -43,18 +43,16 @@ function about() {
 }
 
 function removeEmojis(url) {
-  // Replace '%20' with a space
-  url = url.replace(/%20/g, " ");
-
   // Remove emojis
   var regex = /[\uD800-\uDBFF][\uDC00-\uDFFF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
   url = url.replace(regex, "");
 
-  // Remove any remaining spaces
-  url = url.replace(/\s/g, "");
+  // Remove special characters (excluding spaces)
+  url = url.replace(/[^a-zA-Z0-9 ]/g, '');
 
   return url;
 }
+
 
 function generateRandomStr(length) {
   var result = '';
@@ -140,7 +138,7 @@ function downloader(url, name, format) {
           var a = document.createElement("a");
           a.href =
             "http://f0841623.xsph.ru/file.php?fileName=" +
-            encodeURIComponent(removeEmojis(name)) +
+            encodeURIComponent(name) +
             "." +
             format +
             "&fileUrl=" +
@@ -203,7 +201,7 @@ function getVid() {
   fetch(api + id(url))
     .then((response) => response.json())
     .then((data) => {
-      var title = data.title;
+      var title = removeEmojis(data.title);
       var desc = data.description;
       document
         .querySelector(".img-fluid")
