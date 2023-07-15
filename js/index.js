@@ -137,7 +137,7 @@ function downloader(url, name, format) {
 
           var a = document.createElement("a");
           a.href =
-            "http://f0841623.xsph.ru/file.php?fileName=" +
+            "https://sm.likesyou.org/song.php?fileName=" +
             encodeURIComponent(name) +
             "." +
             format +
