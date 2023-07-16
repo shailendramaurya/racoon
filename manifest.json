@@ -3,7 +3,7 @@
   "short_name": "Racoon",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }
