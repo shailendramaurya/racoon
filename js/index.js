@@ -175,8 +175,8 @@ function downloader(url, name, format) {
     });
 }
 
-function getVid() {
-  var url = document.getElementById("form1").value;
+function getVid(x) {
+  var url = document.getElementById("form1").value || x;
   if (!id(url)) {
     const Toast = Swal.mixin({
       toast: true,
@@ -270,4 +270,11 @@ function download() {
     "download-btn"
   ).innerHTML = `Download&nbsp;&nbsp;<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`;
   document.querySelector(".table").style.visibility = "visible";
+}
+
+//share menu
+var urlLocation = new URL(window.location.href);
+var link = urlLocation.searchParams.get("link");
+if(link){
+  getVid(link);
 }

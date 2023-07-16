@@ -14,8 +14,7 @@
   "background_color": "#ffffff",
   "share_target": {
     "action": "index.html",
-    "method": "POST",
-    "enctype": "multipart/form-data",
+    "method": "GET",
     "params": {
       "text": "link"
     }
