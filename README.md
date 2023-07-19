@@ -24,12 +24,13 @@ If you find Racoon helpful, consider supporting the project by making a donation
 - Download YouTube videos easily
 - Simple and intuitive user interface
 - Utilizes mdb library for enhanced UI elements
+- PWA, Simply share the YouTube URL, and instantly download your desired content.
 
 ## Features Yet to Implement
 
 - More quality options for videos by merging streams
 - Better UI for desktops
-- PWA with getting YouTube URLs via share menu
+- ~~PWA with getting YouTube URLs via share menu~~
 
 ## Contributing
 
