@@ -118,11 +118,7 @@ function downloader(url, name, format) {
   modal.appendChild(loader);
 
   dModal.toggle();
-  const upload_api =
-    "https://api.codetabs.com/v1/proxy?quest=" +
-    encodeURIComponent(
-      "http://f0841623.xsph.ru/api.php?link=" + encodeURIComponent(url)
-    );
+  const upload_api = "http://f0841623.xsph.ru/api.php?link=" + encodeURIComponent(url);
   fetch(upload_api)
     .then((response) => response.json())
     .then((data) => {
