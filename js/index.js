@@ -118,8 +118,8 @@ function downloader(url, name, format) {
   modal.appendChild(loader);
 
   dModal.toggle();
-  const upload_api = "http://f0841623.xsph.ru/api.php?link=" + encodeURIComponent(url);
-  fetch(upload_api)
+const upload_api ="https://corsproxy.io/?"+encodeURIComponent("http://f0841623.xsph.ru/api.php?link=" + encodeURIComponent(url));
+	fetch(upload_api)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
