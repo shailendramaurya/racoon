@@ -118,7 +118,7 @@ function downloader(url, name, format) {
   modal.appendChild(loader);
 
   dModal.toggle();
-const upload_api ="https://corsproxy.io/?"+encodeURIComponent("https://racoon.shailendramaurya.workers.dev?link="+ encodeURIComponent(url));
+const upload_api ="https://racoon.shailendramaurya.workers.dev?link="+ encodeURIComponent(url);
 	fetch(upload_api)
     .then((response) => response.json())
     .then((data) => {
