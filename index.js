@@ -1,7 +1,7 @@
 const thumbnail = document.getElementById('thumbnail');
 const title = document.getElementById('title');
 const videoDataContainer = document.getElementById('videoData');
-const [yt,piped,ytify]=videoDataContainer.getElementsByTagName('a');
+const [yt, piped, ytify] = videoDataContainer.getElementsByTagName('a');
 const table = document.querySelector('tbody');
 // Default api link in case fetching all instances fails
 
@@ -45,6 +45,7 @@ function createDownloadLink(url) {
 
 
 function fetchStreamInfo(id, instance = 0) {
+	if (!id) return;
 	fetch(apiList[instance] + '/streams/' + id)
 		.then(res => res.json())
 		.then(data => {
@@ -55,10 +56,10 @@ function fetchStreamInfo(id, instance = 0) {
 
 			thumbnail.src = `https://img.youtube.com/vi_webp/${id}/hqdefault.webp`;
 			title.src = data.title;
-			yt.href = 'https://youtu.be/'+id;
-			piped.href = 'https://piped.video/watch?v='+id;
-			ytify.href = 'https://ytify.netlify.app?s='+id;
-			
+			yt.href = 'https://youtu.be/' + id;
+			piped.href = 'https://piped.video/watch?v=' + id;
+			ytify.href = 'https://ytify.netlify.app?s=' + id;
+
 			data.videoStreams.forEach(_ => createRow(['Video', _.format, _.quality, createDownloadLink(_.url)]));
 
 			data.audioStreams.forEach(_ => createRow(['Audio', _.format, _.quality, createDownloadLink(_.url)]));
@@ -76,13 +77,16 @@ function id(url) {
 	return match && match[7].length == 11 ? match[7] : false;
 }
 
-document.forms[0].addEventListener('submit',_=>{
+
+// form action 
+
+document.forms[0].addEventListener('submit', _ => {
 	_.preventDefault();
-	const url = _.target.firstElementChild.value;
-	id(url);
-	
-	if(id) fetchStreamInfo(id);
+	fetchStreamInfo(id(_.target.firstElementChild.value));
 });
 
 
-
+// url query param
+const queryParam = new URL(location.href).searchParams;
+if (queryParam.has('link'))
+	fetchStreamInfo(id(queryParam.get('link')));
