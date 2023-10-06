@@ -30,41 +30,28 @@
 		<input type="url" name="" id="" placeholder="YouTube URL">
 		<button>Download</button>
 
-		<article class="hiden">
+		<article id="videoData" class="hidden">
 			<figure>
-				<img src="https://img.youtube.com/vi/7wtfhZwyrcc/0.jpg">
+				<img id="thumbnail">
 				<br><br>
 				<figcaption>
-					<h4>Video Title </h4>
+					<h4 id="title"></h4>
 				</figcaption>
 			</figure>
-			<a href="#" role="button">View on YouTube</a>
-			<a href="#" role="button">View on Piped</a>
-			<a href="#" role="button">Listen on Ytify</a>
+			<a href="#" role="button" target="_blank">View on YouTube</a>
+			<a href="#" role="button" target="_blank">View on Piped</a>
+			<a href="#" role="button" target="_blank">Listen on Ytify</a>
 			<br><br>
 			<table role="grid">
 				<thead>
 					<tr>
 						<th scope="col">Type</th>
 						<th scope="col">Codec</th>
-						<th scope="col">Bitrate</th>
+						<th scope="col">Quality</th>
 						<th scope="col">Download</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>Video</td>
-						<td>Webm</td>
-						<td>300kb/s</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Video</td>
-						<td>Mp4</td>
-						<td>400kb/s</td>
-						<td>Link</td>
-					</tr>
-				</tbody>
+				<tbody></tbody>
 			</table>
 
 		</article>
