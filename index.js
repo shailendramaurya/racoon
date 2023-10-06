@@ -60,7 +60,7 @@ function fetchStreamInfo(id, instance = 0) {
 			piped.href = 'https://piped.video/watch?v=' + id;
 			ytify.href = 'https://ytify.netlify.app?s=' + id;
 
-			data.videoStreams.forEach(_ => createRow(['Video', _.format, _.quality, createDownloadLink(_.url)]));
+			data.videoStreams.filter(_=>!_.videoOnly).forEach(_ => createRow(['Video', _.format, _.quality, createDownloadLink(_.url)]));
 
 			data.audioStreams.forEach(_ => createRow(['Audio', _.format, _.quality, createDownloadLink(_.url)]));
 		})
