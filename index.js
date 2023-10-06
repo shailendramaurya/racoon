@@ -69,4 +69,20 @@ function fetchStreamInfo(id, instance = 0) {
 		})
 }
 
-fetchStreamInfo('7wtfhZwyrcc')
+
+function id(url) {
+	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	var match = url.match(regExp);
+	return match && match[7].length == 11 ? match[7] : false;
+}
+
+document.forms[0].addEventListener('submit',_=>{
+	_.preventDefault();
+	const url = _.target.firstElementChild.value;
+	id(url);
+	
+	if(id) fetchStreamInfo(id);
+});
+
+
+
