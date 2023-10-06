@@ -31,8 +31,8 @@ function createRow(data) {
 }
 
 function createDownloadLink(url) {
-	const btn = document.createElement('button');
-	btn.textContent = 'link';
+	const btn = document.createElement('p');
+	btn.textContent='⬇️';
 	btn.addEventListener('click', () => {
 		/*
 		download the url to your server
@@ -49,7 +49,6 @@ function fetchStreamInfo(id, instance = 0) {
 	fetch(apiList[instance] + '/streams/' + id)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data.audioStreams, data.videoStreams);
 
 			if (videoDataContainer.classList.contains('hidden'))
 				videoDataContainer.classList.remove('hidden');
@@ -72,8 +71,8 @@ function fetchStreamInfo(id, instance = 0) {
 
 
 function id(url) {
-	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
-	var match = url.match(regExp);
+	const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	const match = url.match(regExp);
 	return match && match[7].length == 11 ? match[7] : false;
 }
 

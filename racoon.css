@@ -66,5 +66,5 @@ figure img {
 }
 
 .hidden {
-	visibility: hidden
+	display: none;
 }
