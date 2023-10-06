@@ -129,7 +129,7 @@ const upload_api ="https://racoon.shailendramaurya.workers.dev?link="+ encodeURI
         dButton.classList.remove("disabled");
         dButton.addEventListener("click", function () {
           // Retrieve the file URL from the API response
-          var fileUrl = "http://f0841623.xsph.ru/uploads/" + data.filename;
+          var fileUrl = "https://racoon-dl.shailendramaurya.workers.dev/uploads/"+ data.filename;
 
           var a = document.createElement("a");
           a.href =
