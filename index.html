@@ -17,74 +17,82 @@
 	<link rel="icon" type="image/png" href="logo.png">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css">
 	<link rel="stylesheet" href="https://css.gg/css?=spinner-alt|software-download|menu">
-
-	<style>
-	
-	</style>
+	<link rel="stylesheet" href="racoon.css">
 </head>
 
 <body>
-	
 	<header align="center">
-		<h1><img width="10%" src="logo.png"> Racoon</h1>
+		<h1><img src="logo.png" class="logo">Racoon</h1>
 	</header>
 
 	<main class="container">
-		
-<input type="url" name="" id="" placeholder="YouTube URL">
-<button>Download</button>
 
-<article>
-	<figure>
-		<img src="https://img.youtube.com/vi/7wtfhZwyrcc/0.jpg">
-		<figcaption>Video Title</figcaption>
-	</figure>
-	<table role="grid">
-		<thead>
-			<tr>
-				<th scope="col">Type</th>
-				<th scope="col">Codec</th>
-				<th scope="col">Bitrate</th>
-				<th scope="col">Download</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Video</td>
-				<td>Webm</td>
-				<td>300kb/s</td>
-				<td>Link</td>
-			</tr>
-			<tr>
-				<td>Video</td>
-				<td>Mp4</td>
-				<td>400kb/s</td>
-				<td>Link</td>
-			</tr>
-		</tbody>
-	</table>
-	
-</article>
+		<input type="url" name="" id="" placeholder="YouTube URL">
+		<button>Download</button>
+
+		<article class="hiden">
+			<figure>
+				<img src="https://img.youtube.com/vi/7wtfhZwyrcc/0.jpg">
+				<br><br>
+				<figcaption>
+					<h4>Video Title </h4>
+				</figcaption>
+			</figure>
+			<a href="#" role="button">View on YouTube</a>
+			<a href="#" role="button">View on Piped</a>
+			<a href="#" role="button">Listen on Ytify</a>
+			<br><br>
+			<table role="grid">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Codec</th>
+						<th scope="col">Bitrate</th>
+						<th scope="col">Download</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Video</td>
+						<td>Webm</td>
+						<td>300kb/s</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Video</td>
+						<td>Mp4</td>
+						<td>400kb/s</td>
+						<td>Link</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</article>
 	</main>
-	
+
 	<footer align="center">
-		
+
 		<article>
-			<header><b>About</b></header>
-			<img  width="50%" src="logo.png"/>
-			<br>
+			<header>About</header>
+			<img width="50%" src="logo.png" class="logo" />
+			<br><br>
 			Racoon is a lightweight YouTube downloader written in HTML, JS with PicoCSS library, it uses Piped API for fetching data.
 			<footer>Licensed under MIT, open-sourced at <a href="https://github.com/shailendramaurya/racoon">Github</a>.</footer>
 		</article>
 		<article>
-			<header><b>Developer</b></header>
-			<img width="50%" src="https://avatars.githubusercontent.com/u/87139652?v=4"><br><br>
-			<h4>Shailendra Maurya</h4>
+			<header>Developer</header>
+
+			<figure>
+				<img width="50%" src="https://avatars.githubusercontent.com/u/87139652?v=4"><br><br>
+				<figcaption>
+					<h4>Shailendra Maurya</h4>
+				</figcaption>
+			</figure>
 			A Passionate Web Developer & a Medico.
 			<footer><a href="info@shailen.onweb.im">Email</a></footer>
 		</article>
 	</footer>
-	<!--<script src="index.js"></script>-->
+	<script src="index.js" type="module"></script>
 </body>
 
 </html>
