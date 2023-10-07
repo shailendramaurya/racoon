@@ -3,8 +3,9 @@ const title = document.getElementById('title');
 const videoDataContainer = document.getElementById('videoData');
 const [yt, piped, ytify] = videoDataContainer.getElementsByTagName('a');
 const table = document.querySelector('tbody');
-// Default api link in case fetching all instances fails
+const loader = document.getElementById('loader');
 
+// Default api link in case fetching all instances fails
 const apiList = ['https://pipedapi.kavin.rocks'];
 
 fetch('https://piped-instances.kavin.rocks')
@@ -14,6 +15,21 @@ fetch('https://piped-instances.kavin.rocks')
 		data.map(_ => apiList.push(_.api_url))
 	});
 
+	// Subsequently remove emojis & special characters (excluding spaces)
+
+const removeEmojis = url => url.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "").replace(/[^a-zA-Z0-9 ]/g, '');
+
+
+function generateRandomStr(length) {
+	let result = '';
+	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	const charactersLength = characters.length;
+	for (let i = 0; i < length; i++) {
+		const randomIndex = Math.floor(Math.random() * charactersLength);
+		result += characters.charAt(randomIndex);
+	}
+	return result;
+}
 
 
 // paramerer data is an array in the form [type,codec,quality,download()]
@@ -23,21 +39,37 @@ function createRow(data) {
 		const td = document.createElement('td');
 		td.scope = 'col';
 		i === 3 ?
-			td.appendChild(data[i]) :
+			td.appendChild(data[3],data[4]) :
 			td.textContent = data[i];
 		tr.appendChild(td);
 	}
 	table.appendChild(tr);
 }
 
-function createDownloadLink(url) {
+function createDownloadLink(url,name) {
 	const btn = document.createElement('p');
-	btn.textContent='⬇️';
+	btn.className = 'download';
 	btn.addEventListener('click', () => {
-		/*
-		download the url to your server
-		pass download action to the event listener
-		*/
+		loader.classList.remove('hidden');
+		fetch('https://racoon.shailendramaurya.workers.dev/?link=' + encodeURIComponent(url))
+			.then(res => res.json())
+			.then(data => {
+				if (!data.success) throw new Error('failed to load');
+				const fileUrl = 'https://racoon-dl.shailendramaurya.workers.dev/uploads/' + data.filename;
+
+				const a = document.createElement('a');
+				a.href = 'https://sm.likesyou.org/song.php?fileName=' +
+					encodeURIComponent(name) +
+					'.' +
+					format +
+					'&fileUrl=' +
+					fileUrl + '&nocache=' + generateRandomStr(5);
+				a.download = '';
+				a.click();
+			})
+			.catch(_ => alert(_))
+			.finally(() => loader.classList.add('hidden'));
+
 	})
 
 	return btn;
@@ -46,26 +78,45 @@ function createDownloadLink(url) {
 
 function fetchStreamInfo(id, instance = 0) {
 	if (!id) return;
+	loader.classList.remove('hidden');
 	fetch(apiList[instance] + '/streams/' + id)
 		.then(res => res.json())
 		.then(data => {
 
 			if (videoDataContainer.classList.contains('hidden'))
 				videoDataContainer.classList.remove('hidden');
-
+			const title = removeEmojis(data.title);
 			thumbnail.src = `https://img.youtube.com/vi_webp/${id}/hqdefault.webp`;
-			title.src = data.title;
+			title.src = title;
 			yt.href = 'https://youtu.be/' + id;
 			piped.href = 'https://piped.video/watch?v=' + id;
 			ytify.href = 'https://ytify.netlify.app?s=' + id;
 
-			data.videoStreams.filter(_=>!_.videoOnly).forEach(_ => createRow(['Video', _.format, _.quality, createDownloadLink(_.url)]));
+			data.videoStreams
+				.filter(_ => !_.videoOnly)
+				.forEach(_ => createRow([
+					'Video',
+					_.format,
+					_.quality,
+					createDownloadLink(_.url),
+					title
+					]));
 
-			data.audioStreams.forEach(_ => createRow(['Audio', _.format, _.quality, createDownloadLink(_.url)]));
+			data.audioStreams
+				.forEach(_ => createRow([
+					'Audio',
+					_.format,
+					_.quality,
+					createDownloadLink(_.url),
+					title
+					]));
 		})
 		.catch(() => {
 			if (instance < apiList.length)
 				fetchStreamInfo(id, instance + 1);
+		})
+		.finally(() => {
+			loader.classList.add('hidden');
 		})
 }
 
