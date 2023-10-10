@@ -89,10 +89,23 @@ figure img {
    padding:10px;
    border-radius:5px;
    position:relative;
-   margin-left:20vw;
+   margin-inline:15vw;
    background-color: cornflowerblue;
  }
  i{
    margin:20px;
    scale:1.2;
+ }
+ #status{
+   display:flex;
+   position:fixed;
+   left:50%;
+   top:50%;
+   transform:translate(-50%,-50%);
+ }
+ #status i{
+   scale:4;
+ }
+ #status .check{
+   
  }

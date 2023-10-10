@@ -1,8 +1,10 @@
 # Racoon
 
-A YouTube downloader written in HTML, JS with mdb library and piped API & php backend.
+A media downloader written in HTML, JS with pico css.
 
 ## ⚠️ Work in Progress ⚠️
+
+### Status: functioning
 
 ## Author
 

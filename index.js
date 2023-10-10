@@ -1,142 +1,92 @@
-const thumbnail = document.getElementById('thumbnail');
-const title = document.getElementById('title');
-const videoDataContainer = document.getElementById('videoData');
-const [yt, piped, ytify] = videoDataContainer.getElementsByTagName('a');
-const table = document.querySelector('tbody');
-const loader = document.getElementById('loader');
+function formatBytes(a,b=2){if(!+a)return"0 Bytes";const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return`${parseFloat((a/Math.pow(1024,d)).toFixed(c))} ${["Bytes","KiB","MiB","GiB","TiB","PiB","EiB","ZiB","YiB"][d]}`}
 
-// Default api link in case fetching all instances fails
-const apiList = ['https://pipedapi.kavin.rocks'];
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const url = urlParams.get("url");
+const ref = urlParams.get("ref");
+const statusDiv = document.getElementById("status");
 
-fetch('https://piped-instances.kavin.rocks')
-	.then(res => res.json())
-	.then(data => {
-		apiList.pop();
-		data.map(_ => apiList.push(_.api_url))
-	});
-
-	// Subsequently remove emojis & special characters (excluding spaces)
-
-const removeEmojis = url => url.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "").replace(/[^a-zA-Z0-9 ]/g, '');
-
-
-function generateRandomStr(length) {
-	let result = '';
-	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	const charactersLength = characters.length;
-	for (let i = 0; i < length; i++) {
-		const randomIndex = Math.floor(Math.random() * charactersLength);
-		result += characters.charAt(randomIndex);
-	}
-	return result;
+const status = {
+  "loading": function(){
+    statusDiv.innerHTML=``;
+    statusDiv.innerHTML=`<i class="gg-loadbar-alt"></i>`;
+  },
+  "success": function(fileSize){
+    statusDiv.innerHTML=``;
+    statusDiv.innerHTML=`
+ <i class="gg-check"></i><br><h4>`+fileSize+`</h4>`;
+  }
 }
 
-
-// paramerer data is an array in the form [type,codec,quality,download()]
-function createRow(data) {
-	const tr = document.createElement('tr');
-	for (let i = 0; i < 4; i++) {
-		const td = document.createElement('td');
-		td.scope = 'col';
-		i === 3 ?
-			td.appendChild(data[3],data[4]) :
-			td.textContent = data[i];
-		tr.appendChild(td);
-	}
-	table.appendChild(tr);
+function processUrl(x){
+  if(url){
+    document.getElementById('url').value=url;
+    submit(x);
+  }
+  else{return}
 }
+processUrl(url);
 
-function createDownloadLink(url,name) {
-	const btn = document.createElement('p');
-	btn.className = 'download';
-	btn.addEventListener('click', () => {
-		loader.classList.remove('hidden');
-		fetch('https://racoon.shailendramaurya.workers.dev/?link=' + encodeURIComponent(url))
-			.then(res => res.json())
-			.then(data => {
-				if (!data.success) throw new Error('failed to load');
-				const fileUrl = 'https://racoon-dl.shailendramaurya.workers.dev/uploads/' + data.filename;
+function submit(x) {
+  if(!x){return}
+  var api = "https://co.wuk.sh/api/json";
+  var url = encodeURIComponent(x);
+  
+  var vQuality = document.getElementById('vQuality').value || 720;
+  var isAudioOnly = document.getElementById('isAudioOnly').checked || false;
+  var aFormat = isAudioOnly ? (document.getElementById('aFormat').value || 'best') : null;
 
-				const a = document.createElement('a');
-				a.href = 'https://sm.likesyou.org/song.php?fileName=' +
-					encodeURIComponent(name) +
-					'.' +
-					format +
-					'&fileUrl=' +
-					fileUrl + '&nocache=' + generateRandomStr(5);
-				a.download = '';
-				a.click();
-			})
-			.catch(_ => alert(_))
-			.finally(() => loader.classList.add('hidden'));
+  const requestBody = {
+    url: url,
+    vQuality: vQuality,
+    isAudioOnly: isAudioOnly,
+    aFormat: aFormat
+  };
 
-	})
 
-	return btn;
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(requestBody),
+  };
+status.loading();
+
+  fetch(api, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response data:', data);
+
+      const fileUrl = data.url;
+      // Fetch the file size
+      fetch(fileUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('File download failed');
+          }
+          return response.headers.get('content-length');
+        })
+        .then(fileSize => {
+          status.success(formatBytes(fileSize));
+
+          // create a download link
+          const downloadLink = document.createElement('a');
+          downloadLink.href = fileUrl;
+          downloadLink.download = 'file';
+          downloadLink.click();
+        })
+        .catch(error => {
+          console.error('Error downloading file:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
-
-
-function fetchStreamInfo(id, instance = 0) {
-	if (!id) return;
-	loader.classList.remove('hidden');
-	fetch(apiList[instance] + '/streams/' + id)
-		.then(res => res.json())
-		.then(data => {
-
-			if (videoDataContainer.classList.contains('hidden'))
-				videoDataContainer.classList.remove('hidden');
-			const title = removeEmojis(data.title);
-			thumbnail.src = `https://img.youtube.com/vi_webp/${id}/hqdefault.webp`;
-			title.src = title;
-			yt.href = 'https://youtu.be/' + id;
-			piped.href = 'https://piped.video/watch?v=' + id;
-			ytify.href = 'https://ytify.netlify.app?s=' + id;
-
-			data.videoStreams
-				.filter(_ => !_.videoOnly)
-				.forEach(_ => createRow([
-					'Video',
-					_.format,
-					_.quality,
-					createDownloadLink(_.url),
-					title
-					]));
-
-			data.audioStreams
-				.forEach(_ => createRow([
-					'Audio',
-					_.format,
-					_.quality,
-					createDownloadLink(_.url),
-					title
-					]));
-		})
-		.catch(() => {
-			if (instance < apiList.length)
-				fetchStreamInfo(id, instance + 1);
-		})
-		.finally(() => {
-			loader.classList.add('hidden');
-		})
-}
-
-
-function id(url) {
-	const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
-	const match = url.match(regExp);
-	return match && match[7].length == 11 ? match[7] : false;
-}
-
-
-// form action 
-
-document.forms[0].addEventListener('submit', _ => {
-	_.preventDefault();
-	fetchStreamInfo(id(_.target.firstElementChild.value));
-});
-
-
-// url query param
-const queryParam = new URL(location.href).searchParams;
-if (queryParam.has('link'))
-	fetchStreamInfo(id(queryParam.get('link')));

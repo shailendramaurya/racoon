@@ -16,28 +16,27 @@
 
 	<link rel="icon" type="image/png" href="logo.png">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css">
-	<link rel="stylesheet" href="https://css.gg/css?=website|spinner-alt|software-download">
+	<link rel="stylesheet" href="https://css.gg/css?=website|loadbar-alt|check">
 	<link rel="stylesheet" href="racoon.css">
 <script src="modal.js" type="text/javascript" async></script>
+	<script src="index.js" async></script>
 </head>
 
 <body>
-	<div id="loader" class="hidden">
-		<i></i>
-	</div>
+  
 	<header align="center">
 		<h1><img src="logo.png" class="logo">Racoon</h1>
 	</header>
 
 	<main class="container">
-	  <form>
+	  <form onsubmit="submit(document.getElementById('url').value);return false;">
 		<input type="url" id="url" placeholder="Input URL here">
-			<input type="checkbox">
+			<input type="checkbox" id="isAudioOnly">
 		<label>Audio Only</label>
-		<a class="submitBtn" onclick="submit(document.getElementById('url').value)">Paste & Download</a>
+		<a class="submitBtn" onclick="submit(document.getElementById('url').value)">Download</a>
 	</form>
-
-		
+<div id="status">
+</div>
 	</main>
 
 
@@ -74,7 +73,7 @@
         <option value="240">240p</option>
         <option value="360">360p</option>
         <option value="480">480p</option>
-        <option value="720" selected>720p</option> <!-- Default to 720p -->
+        <option value="720" selected>720p</option>
         <option value="1080">1080p</option>
     </select>
 </div>
@@ -146,7 +145,7 @@ Racoon is not affiliated with<br>any services listed above.
 	
 	
 	
-	<script src="index.js" type="module"></script>
+
 </body>
 
 </html>
