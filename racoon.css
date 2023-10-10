@@ -1,0 +1,98 @@
+/* Indigo Light scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+	--primary: #3949ab;
+	--primary-hover: #303f9f;
+	--primary-focus: rgba(57, 73, 171, 0.125);
+	--primary-inverse: #FFF;
+}
+
+/* Indigo Dark scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */
+@media only screen and (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--primary: #3949ab;
+		--primary-hover: #3f51b5;
+		--primary-focus: rgba(57, 73, 171, 0.25);
+		--primary-inverse: #FFF;
+	}
+
+	.logo {
+		filter: invert();
+		opacity: 0.9;
+	}
+}
+
+/* Indigo Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+[data-theme="dark"] {
+	--primary: #3949ab;
+	--primary-hover: #3f51b5;
+	--primary-focus: rgba(57, 73, 171, 0.25);
+	--primary-inverse: #FFF;
+}
+
+/* Indigo (Common styles) */
+:root {
+	--form-element-active-border-color: var(--primary);
+	--form-element-focus-color: var(--primary-focus);
+	--switch-color: var(--primary-inverse);
+	--switch-checked-background-color: var(--primary);
+}
+
+
+h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+h1 img {
+	height: 2rem;
+}
+
+article header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+figure img {
+	border-radius: 0.3rem;
+}
+
+[role="button"] {
+	margin-bottom: 0.3rem;
+}
+
+.hidden {
+	display: none;
+}
+#videoData{
+	overflow:scroll;
+}
+
+.contrast {
+   border:1px solid grey;
+   color:grey;
+   margin:5px;
+   padding:10px;
+   border-radius:5px;
+ }
+ footer[align="center"]{
+   position:fixed;
+   bottom:10px;
+ }
+ .submitBtn{
+   border:none;
+   color:white;
+   padding:10px;
+   border-radius:5px;
+   position:relative;
+   margin-left:20vw;
+   background-color: cornflowerblue;
+ }
+ i{
+   margin:20px;
+   scale:1.2;
+ }

@@ -2,260 +2,151 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="manifest" href="manifest.json" />
+	<meta charset="UTF-8">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="description" content="Download youtube videos & audio in high quality, free and no ads !">
 	<meta name="author" content="Shailendra Maurya">
 	<meta name="theme-color" content="white">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="keywords" content="youtube, utube, youtube video, youtube downloader, youtube video download, racoon">
-<link rel="icon" type="image/png" href="logo.png">
-  <!-- Font Awesome -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-  href="css/mdb.min.css"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="js/mdb.min.js"
-></script>
 
-<script
-  type="text/javascript"
-  src="js/sweetalert2.js"
-></script>
-  <title>Racoon</title>
-  <style>
-   .loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  border: 2px solid #000;
-  box-sizing: border-box;
-  left:45%;
-  top:40%;
-  transform:translate(-50%,0%);
-  animation: rotation 1s linear infinite;
-}
-.loader::after {
-  content: '';  
-  box-sizing: border-box;
-  position: absolute;
-  left: 4px;
-  top: 4px;
-  border: 7px solid #000;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-    
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} </style>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8650486992199581"
-     crossorigin="anonymous"></script>
+	<title>Racoon</title>
+
+	<link rel="icon" type="image/png" href="logo.png">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css">
+	<link rel="stylesheet" href="https://css.gg/css?=website|spinner-alt|software-download">
+	<link rel="stylesheet" href="racoon.css">
+<script src="modal.js" type="text/javascript" async></script>
 </head>
 
 <body>
-<header>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarExample01"
-        aria-controls="navbarExample01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>Racoon
-      
-      
-      
-  <div class="dropdown btn-group" style="margin-right: 45px;">
-  <a
-    class="btn btn-secondary dropdown-toggle"
-    href="#"
-    role="button"
-    id="dropdownMenuLink"
-    data-mdb-toggle="dropdown"
-    aria-expanded="false"
-  >
-  Servers
-  </a>
+	<div id="loader" class="hidden">
+		<i></i>
+	</div>
+	<header align="center">
+		<h1><img src="logo.png" class="logo">Racoon</h1>
+	</header>
 
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-  </ul>
+	<main class="container">
+	  <form>
+		<input type="url" id="url" placeholder="Input URL here">
+			<input type="checkbox">
+		<label>Audio Only</label>
+		<a class="submitBtn" onclick="submit(document.getElementById('url').value)">Paste & Download</a>
+	</form>
+
+		
+	</main>
+
+
+
+	<footer align="center">
+	  <a class="settings" data-target="settings"
+  onClick="toggleModal(event)">
+  <i class="gg-website"></i>
+</a><br>
+	  <a class="contrast"
+  data-target="about"
+  onClick="toggleModal(event)">
+  About
+</a>
+<a class="contrast" data-target="developer"
+  onClick="toggleModal(event)">
+  Developer
+</a>
+<a class="contrast"
+  data-target="supported-sites"
+  onClick="toggleModal(event)">
+  Supported Sites
+</a>
+
+<dialog id="settings">
+		<article>
+			<header>Settings</header>
+			<br>
+			<div style="display:flex;">
+			  <label for="vQuality"><h4>Video</h4></label>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="vQuality">
+        <option value="144">144p</option>
+        <option value="240">240p</option>
+        <option value="360">360p</option>
+        <option value="480">480p</option>
+        <option value="720" selected>720p</option> <!-- Default to 720p -->
+        <option value="1080">1080p</option>
+    </select>
 </div>
+    <br>
 
-      <button class="btn btn-secondary" id="install-button" style="display:none;">Install</button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:developer();">Developer</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:about()">About</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- Navbar -->
+<div style="display:flex">
+  <label for="aFormat"><h4>Audio</h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <select id="aFormat">
+            <option value="best">Best</option>
+            <option value="mp3">MP3</option>
+            <option value="ogg">OGG</option>
+            <option value="wav">WAV</option>
+            <option value="opus">Opus</option>
+        </select>
+        </div>
+		</article>
+		</dialog>
+		
+<dialog id="about">
+		<article>
+			<header>About</header>
+			<img width="50%" src="logo.png" class="logo" />
+			<br><br>
+			Racoon is a lightweight YouTube downloader written in HTML, JS with PicoCSS library, it uses Piped API for fetching data.
+			<footer>Licensed under MIT, open-sourced at <a href="https://github.com/shailendramaurya/racoon">Github</a>.</footer>
+		</article>
+		</dialog>
+		
+		<dialog id="developer">
+		<article>
+			<header>Shailendra Maurya</header>
+			<div style="display:flex">
+			<figure>
+			  
+				<img width="50%" src="https://avatars.githubusercontent.com/u/87139652?v=4"><br><br>
+			</figure>
+			A Passionate Web Developer & a Medico.
+			</div>
+			<footer><a href="info@shailen.onweb.im">Email</a></footer>
+		</article>
+		</dialog>
+		
+		</footer>
+<dialog id="supported-sites">
+		<article>
+			<header>Supported Sites</header>
+			<pre>
+			  <br>
+• youtube videos, shorts & music
+• instagram reels & posts
+• tiktok videos, photos & audio
+• vimeo
+• pinterest videos & stories
+• reddit videos & gifs
+• bilibili.com videos
+• rutube videos
+• soundcloud
+• streamable.com
+• tumblr
+• twitch clips
+• twitter videos & voice
+• vine archive
+• vk video & clips
 
-</header>
-
-
-  <div id="globalLoader" style="width:100%;height:100%;background:rgba(250,250,250,0.5);position:fixed;z-index:5;backdrop-filter:blur(2px);display:none;">
-<span class="loader"></span>
-</div>
-</div>
-
-
-<div style="margin:25px;">
-
-<img src="logo.png" style="position:relative;width:290px;height:auto;left:50%;transform:translate(-50%,0%);">
-
-<!-- Modal -->
-<div class="modal bottom fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-  <div class="modal-dialog modal-frame modal-bottom" style="position:fixed;bottom:0px;width:95%;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Downloading...</h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="button" id="btn-download" class="btn btn-primary disabled">Download</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<br><br>
-
-
-
-<br>
-<div class="input-group">
-  <div class="form-outline">
-    <input type="search" id="form1" class="form-control border"/>
-    <label class="form-label" for="form1">YouTube URL</label>
-  </div>
-  <button type="button" class="btn btn-primary" onclick="getVid()">
-    <i class="fas fa-download"></i>
-  </button>
-</div>
-
-
-
-
-
-<br><br>
-<div class="card" style="display:none;">
-  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-    <img src="" class="img-fluid img-thumbnail"/>
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <button class="btn btn-primary" id="download-btn" onclick="download()">
-     
-  Download
-    </button>
-    </a>
-  </div>
-</div>
-
-
-<br><br>
-
-<table class="table" style="visibility:hidden;">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Type</th>
-      <th scope="col">Quality</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-  </tbody>
-</table>
-
-
-</div>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('sw.js')
-        .then(function(registration) {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(function(error) {
-          console.log('Service Worker registration failed:', error);
-        });
-    });
-  }
-</script>
-
-<script>
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', function(event) {
-  event.preventDefault();
-  deferredPrompt = event;
-console.log('pwa');
-  // Show a custom installation prompt to the user
-  const installButton = document.getElementById('install-button');
-  installButton.style.display = 'block';
-
-  installButton.addEventListener('click', function() {
-    // Prompt the user to install the app
-    deferredPrompt.prompt();
-
-    // Wait for the user's choice
-    deferredPrompt.userChoice.then(function(choiceResult) {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User installed the app');
-      } else {
-        console.log('User dismissed the app installation');
-      }
-
-      // Reset the deferredPrompt variable
-      deferredPrompt = null;
-    });
-  });
-});
-
-</script>
-<script src="js/index.js"></script>
+Racoon is not affiliated with<br>any services listed above.
+			  </pre>
+			</article>
+		</dialog>
+	
+	
+	
+	<script src="index.js" type="module"></script>
 </body>
 
 </html>
