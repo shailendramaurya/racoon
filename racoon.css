@@ -98,10 +98,11 @@ figure img {
  }
  #status{
    display:flex;
-   position:fixed;
+   position:absolute;
+   margin:15px;
    left:50%;
    top:50%;
-   transform:translate(-50%,-50%);
+   transform:translate(-50%,-40%);
  }
  #status i{
    scale:4;

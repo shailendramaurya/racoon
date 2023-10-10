@@ -15,17 +15,26 @@ const status = {
     statusDiv.innerHTML=``;
     statusDiv.innerHTML=`
  <i class="gg-check"></i><br><h4>`+fileSize+`</h4>`;
+  },
+  "error": function(msg){
+    statusDiv.innerHTML=``;
+    statusDiv.innerHTML=msg;
   }
 }
 
 function processUrl(x){
   if(url){
     document.getElementById('url').value=url;
+    if(ref=='ytify'){
+      document.getElementById('isAudioOnly').checked=true;
+      submit(x);
+    }
     submit(x);
   }
   else{return}
 }
 processUrl(url);
+
 
 function submit(x) {
   if(!x){return}
@@ -57,36 +66,45 @@ status.loading();
   fetch(api, requestOptions)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        status.error('Network response was not ok');
       }
       return response.json();
     })
     .then(data => {
       console.log('Response data:', data);
-
+      if(data.status=='error'){
+        status.error(data.text);
+        return;
+      }
+      else if(data.status=='redirect'){
+        window.open(data.url,'_blank');
+        status.success('Redirected');
+        return;
+      } 
+      
       const fileUrl = data.url;
       // Fetch the file size
       fetch(fileUrl)
         .then(response => {
           if (!response.ok) {
-            throw new Error('File download failed');
+            status.error('File download failed');
           }
           return response.headers.get('content-length');
         })
         .then(fileSize => {
           status.success(formatBytes(fileSize));
 
-          // create a download link
+// create a download link
           const downloadLink = document.createElement('a');
           downloadLink.href = fileUrl;
           downloadLink.download = 'file';
           downloadLink.click();
         })
         .catch(error => {
-          console.error('Error downloading file:', error);
+          status.error('Error downloading file:', error);
         });
     })
     .catch(error => {
-      console.error('Error:', error);
+      status.error(error);
     });
 }
