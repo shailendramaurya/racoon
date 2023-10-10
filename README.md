@@ -2,8 +2,6 @@
 
 A media downloader written in HTML, JS with pico css.
 
-## ⚠️ Work in Progress ⚠️
-
 ### Status: functioning
 
 ## Author
@@ -13,28 +11,42 @@ Github Profile: [shailendramaurya](https://github.com/shailendramaurya)
 
 ## Description
 
-Racoon is a YouTube downloader that allows you to easily download videos from YouTube. It is built using HTML, JS with mdb library, and utilizes a piped API and PHP backend for handling the downloading process.
+Racoon is a media downloader that allows you to easily download videos, posts from social media. It is built using HTML, CSS & JS with pico css.
 
 ** Currently in beta, & UI is not well optimised for desktops **
 
-## Donations
-
-If you find Racoon helpful, consider supporting the project by making a donation. Your contribution is greatly appreciated.
-
-[Donate via PayPal](https://paypal.me/shailenam)
 
 ## Features
 
-- Download YouTube videos easily
+- Download videos, posts from social media easily.
 - Simple and intuitive user interface
-- Utilizes mdb library for enhanced UI elements
-- PWA, Simply share the YouTube URL, and instantly download your desired content.
+- Utilizes pico css library for enhanced UI elements
+- Large number of supported sites:
+  - youtube videos, shorts & music
+  - instagram reels & posts
+  - tiktok videos, photos & audio
+  - vimeo
+  - pinterest videos & stories
+  - reddit videos & gifs
+  - bilibili.com videos
+  - rutube videos
+  - soundcloud
+  - streamable.com
+  - tumblr
+  - twitch clips
+  - twitter videos & voice
+  - vine archive
+  - vk video & clips
+
+Racoon is not affiliated with any services listed above in any way, it just fetches the data which are publically available on internet via api
 
 ## Features Yet to Implement
+ 
+ We are open for features suggestions 😄
+ 
+## Inegration with your own app
 
-- More quality options for videos by merging streams
-- Better UI for desktops
-- ~~PWA with getting YouTube URLs via share menu~~
+ Racoon can be integrated in any web app, just pass parameter ```?url=MEDIA_URL_HERE``` to ```https://shailendramaurya.github.io/racoon```, and it will start download..... Also, if you want to download audio only pass ```?audio=true```. Thank you !
 
 ## Contributing
 

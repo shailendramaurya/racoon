@@ -4,6 +4,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const url = urlParams.get("url");
 const ref = urlParams.get("ref");
+const audio = urlParams.get("audio");
 const statusDiv = document.getElementById("status");
 
 const status = {
@@ -25,7 +26,7 @@ const status = {
 function processUrl(x){
   if(url){
     document.getElementById('url').value=url;
-    if(ref=='ytify'){
+    if(ref=='ytify'|| audio){
       document.getElementById('isAudioOnly').checked=true;
       submit(x);
     }
