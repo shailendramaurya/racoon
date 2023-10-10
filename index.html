@@ -16,8 +16,9 @@
 
 	<link rel="icon" type="image/png" href="logo.png">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css">
-	<link rel="stylesheet" href="https://css.gg/css?=spinner-alt|software-download">
+	<link rel="stylesheet" href="https://css.gg/css?=website|spinner-alt|software-download">
 	<link rel="stylesheet" href="racoon.css">
+<script src="modal.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -29,40 +30,70 @@
 	</header>
 
 	<main class="container">
-		<form>
-		<input type="url" placeholder="YouTube URL">
-		<button type="submit">Download</button>
-		</form>
+	  <form>
+		<input type="url" id="url" placeholder="Input URL here">
+			<input type="checkbox">
+		<label>Audio Only</label>
+		<a class="submitBtn" onclick="submit(document.getElementById('url').value)">Paste & Download</a>
+	</form>
 
-		<article id="videoData" class="hidden">
-			<figure>
-				<img id="thumbnail">
-				<br><br>
-				<figcaption>
-					<h4 id="title"></h4>
-				</figcaption>
-			</figure>
-			<a href="#" role="button" target="_blank">View on YouTube</a>
-			<a href="#" role="button" target="_blank">View on Piped</a>
-			<a href="#" role="button" target="_blank">Listen on Ytify</a>
-			<br><br>
-			<table role="grid">
-				<thead>
-					<tr>
-						<th scope="col">Type</th>
-						<th scope="col">Codec</th>
-						<th scope="col">Quality</th>
-						<th scope="col">Download</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-
-		</article>
+		
 	</main>
 
-	<footer align="center">
 
+
+	<footer align="center">
+	  <a class="settings" data-target="settings"
+  onClick="toggleModal(event)">
+  <i class="gg-website"></i>
+</a><br>
+	  <a class="contrast"
+  data-target="about"
+  onClick="toggleModal(event)">
+  About
+</a>
+<a class="contrast" data-target="developer"
+  onClick="toggleModal(event)">
+  Developer
+</a>
+<a class="contrast"
+  data-target="supported-sites"
+  onClick="toggleModal(event)">
+  Supported Sites
+</a>
+
+<dialog id="settings">
+		<article>
+			<header>Settings</header>
+			<br>
+			<div style="display:flex;">
+			  <label for="vQuality"><h4>Video</h4></label>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="vQuality">
+        <option value="144">144p</option>
+        <option value="240">240p</option>
+        <option value="360">360p</option>
+        <option value="480">480p</option>
+        <option value="720" selected>720p</option> <!-- Default to 720p -->
+        <option value="1080">1080p</option>
+    </select>
+</div>
+    <br>
+
+<div style="display:flex">
+  <label for="aFormat"><h4>Audio</h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <select id="aFormat">
+            <option value="best">Best</option>
+            <option value="mp3">MP3</option>
+            <option value="ogg">OGG</option>
+            <option value="wav">WAV</option>
+            <option value="opus">Opus</option>
+        </select>
+        </div>
+		</article>
+		</dialog>
+		
+<dialog id="about">
 		<article>
 			<header>About</header>
 			<img width="50%" src="logo.png" class="logo" />
@@ -70,19 +101,51 @@
 			Racoon is a lightweight YouTube downloader written in HTML, JS with PicoCSS library, it uses Piped API for fetching data.
 			<footer>Licensed under MIT, open-sourced at <a href="https://github.com/shailendramaurya/racoon">Github</a>.</footer>
 		</article>
+		</dialog>
+		
+		<dialog id="developer">
 		<article>
-			<header>Developer</header>
-
+			<header>Shailendra Maurya</header>
+			<div style="display:flex">
 			<figure>
+			  
 				<img width="50%" src="https://avatars.githubusercontent.com/u/87139652?v=4"><br><br>
-				<figcaption>
-					<h4>Shailendra Maurya</h4>
-				</figcaption>
 			</figure>
 			A Passionate Web Developer & a Medico.
+			</div>
 			<footer><a href="info@shailen.onweb.im">Email</a></footer>
 		</article>
-	</footer>
+		</dialog>
+		
+		</footer>
+<dialog id="supported-sites">
+		<article>
+			<header>Supported Sites</header>
+			<pre>
+			  <br>
+• youtube videos, shorts & music
+• instagram reels & posts
+• tiktok videos, photos & audio
+• vimeo
+• pinterest videos & stories
+• reddit videos & gifs
+• bilibili.com videos
+• rutube videos
+• soundcloud
+• streamable.com
+• tumblr
+• twitch clips
+• twitter videos & voice
+• vine archive
+• vk video & clips
+
+Racoon is not affiliated with<br>any services listed above.
+			  </pre>
+			</article>
+		</dialog>
+	
+	
+	
 	<script src="index.js" type="module"></script>
 </body>
 
