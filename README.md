@@ -2,10 +2,7 @@
 
 A YouTube downloader written in HTML, JS with mdb library and piped API & php backend.
 
-## ⚠️ Backend server have limited bandwidth and storage ⚠️
-### - Will migrate to a powerfull server soon
-### - Do not download large files
-### - If you encountered any issue, try fetching http://f0841623.xsph.ru/cron.php or open an issues
+## ⚠️ Work in Progress ⚠️
 
 ## Author
 
