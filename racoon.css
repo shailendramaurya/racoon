@@ -80,33 +80,26 @@ figure img {
    border-radius:5px;
  }
  footer[align="center"]{
-   position:fixed;
-   bottom:10px;
- }
- .submitBtn{
-   border:none;
-   color:white;
-   padding:10px;
-   border-radius:5px;
    position:relative;
-   margin-inline:15vw;
-   background-color: cornflowerblue;
+   bottom:0px;
+resize:none;
  }
+ 
  i{
    margin:20px;
    scale:1.2;
  }
  #status{
    display:flex;
-   position:absolute;
-   margin:15px;
-   left:50%;
-   top:50%;
-   transform:translate(-50%,-40%);
+   position:relative;
+justify-content:center;
+padding-top: 10px;
+width:95%;
+height:auto;
+left:50%;
+top:50%;
+transform:translate(-50%,-40%)
  }
  #status i{
    scale:4;
- }
- #status .check{
-   
  }

@@ -7,6 +7,7 @@ const ref = urlParams.get("ref");
 const audio = urlParams.get("audio");
 const statusDiv = document.getElementById("status");
 
+
 const status = {
   "loading": function(){
     statusDiv.innerHTML=``;
@@ -23,6 +24,7 @@ const status = {
   }
 }
 
+
 function processUrl(x){
   if(url){
     document.getElementById('url').value=url;
@@ -35,6 +37,21 @@ function processUrl(x){
   else{return}
 }
 processUrl(url);
+
+
+
+document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+submit(document.getElementById('url').value);
+            });
+
+document.getElementById("isAudioOnly").addEventListener("change", function(event) {
+            if(document.getElementById('isAudioOnly').checked){
+document.getElementById("vQuality").setAttribute("disabled","")}
+else{
+document.getElementById("vQuality").removeAttribute("disabled")
+}
+            });
 
 
 function submit(x) {

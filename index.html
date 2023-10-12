@@ -29,12 +29,40 @@
 	</header>
 
 	<main class="container">
-	  <form onsubmit="submit(document.getElementById('url').value);return false;">
+	  <form id="form">
 		<input type="url" id="url" placeholder="Input URL here">
-			<input type="checkbox" id="isAudioOnly">
+		
+		<button type="submit" class="submitBtn">Download</button>
+		<article>
+
+	<div style="display:flex;">
+			  <label for="vQuality"><h4>Video</h4></label>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="vQuality">
+        <option value="144">144p</option>
+        <option value="240">240p</option>
+        <option value="360">360p</option>
+        <option value="480">480p</option>
+        <option value="720" selected>720p</option>
+        <option value="1080">1080p</option>
+    </select>
+</div>
+
+<div style="display:flex">
+  <label for="aFormat"><h4>Audio</h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <select id="aFormat">
+            <option value="best">Best</option>
+            <option value="mp3">MP3</option>
+            <option value="ogg">OGG</option>
+            <option value="wav">WAV</option>
+            <option value="opus">Opus</option>
+        </select>
+        </div>
+
+<input type="checkbox" id="isAudioOnly">
 		<label>Audio Only</label>
-		<a class="submitBtn" onclick="submit(document.getElementById('url').value)">Download</a>
-	</form>
+</form>
+</article>
 <div id="status">
 </div>
 	</main>
@@ -42,10 +70,6 @@
 
 
 	<footer align="center">
-	  <a class="settings" data-target="settings"
-  onClick="toggleModal(event)">
-  <i class="gg-website"></i>
-</a><br>
 	  <a class="contrast"
   data-target="about"
   onClick="toggleModal(event)">
@@ -60,37 +84,6 @@
   onClick="toggleModal(event)">
   Supported Sites
 </a>
-
-<dialog id="settings">
-		<article>
-			<header>Settings</header>
-			<br>
-			<div style="display:flex;">
-			  <label for="vQuality"><h4>Video</h4></label>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <select id="vQuality">
-        <option value="144">144p</option>
-        <option value="240">240p</option>
-        <option value="360">360p</option>
-        <option value="480">480p</option>
-        <option value="720" selected>720p</option>
-        <option value="1080">1080p</option>
-    </select>
-</div>
-    <br>
-
-<div style="display:flex">
-  <label for="aFormat"><h4>Audio</h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
-        <select id="aFormat">
-            <option value="best">Best</option>
-            <option value="mp3">MP3</option>
-            <option value="ogg">OGG</option>
-            <option value="wav">WAV</option>
-            <option value="opus">Opus</option>
-        </select>
-        </div>
-		</article>
-		</dialog>
 		
 <dialog id="about">
 		<article>
