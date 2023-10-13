@@ -10,7 +10,7 @@
 	<meta name="theme-color" content="white">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="keywords" content="youtube, utube, youtube video, youtube downloader, youtube video download, racoon">
-
+<link rel="manifest" href="racoon.webmanifest">
 
 	<title>Racoon</title>
 
@@ -137,7 +137,17 @@ Racoon is not affiliated with<br>any services listed above.
 		</dialog>
 	
 	
-	
+	<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+</script>
 
 </body>
 

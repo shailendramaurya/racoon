@@ -20,6 +20,7 @@ Racoon is a media downloader that allows you to easily download videos, posts fr
 
 - Download videos, posts from social media easily.
 - Simple and intuitive user interface
+- PWA support, just share the URL to download.
 - Utilizes pico css library for enhanced UI elements
 - Large number of supported sites:
   - youtube videos, shorts & music

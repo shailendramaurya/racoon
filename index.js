@@ -1,5 +1,10 @@
 function formatBytes(a,b=2){if(!+a)return"0 Bytes";const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return`${parseFloat((a/Math.pow(1024,d)).toFixed(c))} ${["Bytes","KiB","MiB","GiB","TiB","PiB","EiB","ZiB","YiB"][d]}`}
 
+function extractURL(inputText) {
+  const urlRegex = /(https?|http):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|]/ig;
+  return inputText.match(urlRegex);
+}
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const url = urlParams.get("url");
@@ -27,7 +32,7 @@ const status = {
 
 function processUrl(x){
   if(url){
-    document.getElementById('url').value=url;
+    document.getElementById('url').value=extractURL(url);
     if(ref=='ytify'|| audio){
       document.getElementById('isAudioOnly').checked=true;
       submit(x);
@@ -57,7 +62,8 @@ document.getElementById("vQuality").removeAttribute("disabled")
 function submit(x) {
   if(!x){return}
   var api = "https://co.wuk.sh/api/json";
-  var url = encodeURIComponent(x);
+  var cURL = extractURL(x);
+  var url = encodeURIComponent(cURL);
   
   var vQuality = document.getElementById('vQuality').value || 720;
   var isAudioOnly = document.getElementById('isAudioOnly').checked || false;
