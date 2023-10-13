@@ -1,21 +1,30 @@
-/* Indigo Light scheme (Default) */
-/* Can be forced with data-theme="light" */
-[data-theme="light"],
-:root:not([data-theme="dark"]) {
-	--primary: #3949ab;
-	--primary-hover: #303f9f;
-	--primary-focus: rgba(57, 73, 171, 0.125);
-	--primary-inverse: #FFF;
+:root {
+	--main: #3949ab;
+	--hover: #303f9f;
+	--focus: rgba(57,73,171.0.125);
+	--inverse: #FFF;
+	--hoverDark: #3f51b5;
+	--focusDark:rgba(57, 73, 171, 0.25);
+	
 }
 
-/* Indigo Dark scheme (Auto) */
+/* Light scheme (Default) */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+	--primary: var(--main);
+	--primary-hover: var(--hover);
+	--primary-focus: var(--focus);
+	--primary-inverse: var(--inverse);
+}
+
+/* Dark scheme (Auto) */
 /* Automatically enabled if user has Dark mode enabled */
 @media only screen and (prefers-color-scheme: dark) {
 	:root:not([data-theme]) {
-		--primary: #3949ab;
-		--primary-hover: #3f51b5;
-		--primary-focus: rgba(57, 73, 171, 0.25);
-		--primary-inverse: #FFF;
+		--primary: var(--main);
+		--primary-hover:var(--hoverDark);
+		--primary-focus: var(--focusDark);
+		--primary-inverse: var(--inverse);
 	}
 
 	.logo {
@@ -24,16 +33,7 @@
 	}
 }
 
-/* Indigo Dark scheme (Forced) */
-/* Enabled if forced with data-theme="dark" */
-[data-theme="dark"] {
-	--primary: #3949ab;
-	--primary-hover: #3f51b5;
-	--primary-focus: rgba(57, 73, 171, 0.25);
-	--primary-inverse: #FFF;
-}
-
-/* Indigo (Common styles) */
+/* Common styles */
 :root {
 	--form-element-active-border-color: var(--primary);
 	--form-element-focus-color: var(--primary-focus);
@@ -42,12 +42,25 @@
 }
 
 
+* {
+	user-select: none;
+	transition: all 1s;
+}
+
+label {
+	font-family: monospace;
+}
+
+select,button {
+	font-weight: bold;
+}
+
 h1 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 h1 img {
@@ -71,9 +84,6 @@ figure img {
 	display: none;
 }
 
-#videoData {
-	overflow: scroll;
-}
 
 .contrast {
 	border: 1px solid grey;

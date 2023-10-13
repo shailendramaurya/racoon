@@ -10,60 +10,51 @@
 	<meta name="theme-color" content="white">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="keywords" content="youtube, utube, youtube video, youtube downloader, youtube video download, racoon">
-	<link rel="manifest" href="racoon.webmanifest">
+	<link rel="manifest" href="assets/racoon.webmanifest">
 
 	<title>Racoon</title>
 
-	<link rel="icon" type="image/png" href="logo.png">
+	<link rel="icon" type="image/png" href="assets/logo.png">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css">
 	<link rel="stylesheet" href="https://css.gg/css?=website|loadbar-alt|check|info">
 	<link rel="stylesheet" href="racoon.css">
-	<script src="modal.js" type="text/javascript" async></script>
-	<script src="index.js" async></script>
+	<script defer src="js/index.js"></script>
+	<script defer src="js/modal.js"></script>
+	<script defer src="js/dynamicColors.js"></script>
 </head>
 
 <body>
 
 	<header align="center">
-		<h1><img src="logo.png" class="logo">Racoon</h1>
+		<h1><img src="assets/logo.png" class="logo">Racoon</h1>
 	</header>
 
 	<main class="container">
-
-		<form id="form">
-			<input type="url" id="url" placeholder="Input URL here">
-			<article>
-				<div style="display:flex;">
-					<label for="vQuality">
-						<h4>Video</h4>
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<select id="vQuality">
-						<option value="144">144p</option>
-						<option value="240">240p</option>
-						<option value="360">360p</option>
-						<option value="480">480p</option>
-						<option value="720" selected>720p</option>
-						<option value="1080">1080p</option>
-					</select>
-				</div>
-
-				<div style="display:flex">
-					<label for="aFormat">
-						<h4>Audio</h4>
-					</label>&nbsp;&nbsp;&nbsp;&nbsp;
-					<select id="aFormat">
-						<option value="best">Best</option>
-						<option value="mp3">MP3</option>
-						<option value="ogg">OGG</option>
-						<option value="wav">WAV</option>
-						<option value="opus">Opus</option>
-					</select>
-				</div>
-
-				<input type="checkbox" id="isAudioOnly">
-				<label for="isAudioOnly">Audio Only</label>
-			</article>
+		<form>
+			
+			<label for="vQuality">Select Video Quality</label>
+			<select id="vQuality">
+				<option value="144">144p</option>
+				<option value="240">240p</option>
+				<option value="360">360p</option>
+				<option value="480">480p</option>
+				<option value="720" selected>720p</option>
+				<option value="1080">1080p</option>
+			</select>
+			
+			<label for="aFormat">Select Audio Quality</label>
+			<select id="aFormat">
+				<option value="best">Best</option>
+				<option value="mp3">MP3</option>
+				<option value="ogg">OGG</option>
+				<option value="wav">WAV</option>
+				<option value="opus">Opus</option>
+			</select>
+			
+			<input type="checkbox" id="isAudioOnly">
+			<label for="isAudioOnly"> Audio Only</label>
+			<br><br>
+			<input type="url" id="url" placeholder="Input URL here" required>
 
 			<button type="submit" class="submitBtn">Download</button>
 
@@ -139,15 +130,15 @@ Racoon is not affiliated with<br>any services listed above.
 
 
 	<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
-  }
+		if (!('serviceWorker' in navigator)) {
+			navigator.serviceWorker.register('/sw.js')
+				.then((registration) => {
+					console.log('Service Worker registered with scope:', registration.scope);
+				})
+				.catch((error) => {
+					console.error('Service Worker registration failed:', error);
+				});
+		}
 	</script>
 
 </body>
