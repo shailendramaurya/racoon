@@ -1,13 +1,12 @@
 {
   "name": "Racoon",
   "short_name": "Racoon",
-  "start_url": "/",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "scope": "/",
   "share_target": {
-    "action": "/",
+    "action": "index.html",
     "method": "GET",
     "params": {
       "text": "url"
