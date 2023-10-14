@@ -129,7 +129,7 @@ Racoon is not affiliated with<br>any services listed above.
 
 
 	<script>
-		if (!('serviceWorker' in navigator)) {
+		if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('/sw.js')
 				.then((registration) => {
 					console.log('Service Worker registered with scope:', registration.scope);
