@@ -1,8 +1,8 @@
-const CACHE_NAME = 'racoon-cache-v1';
+const CACHE_NAME = 'racoon-cache-v2';
 const urlsToCache = [
   'https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css',
-  '/logo.png',
-  '/modal.js',
+  'assets/logo.png',
+  'js/modal.js',
 ];
 
 self.addEventListener('install', (event) => {
