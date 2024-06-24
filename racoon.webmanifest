@@ -1,6 +1,6 @@
 {
-  "name": "Racoon",
-  "short_name": "Racoon",
+  "name": "QuickGrab",
+  "short_name": "QuickGrab",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
