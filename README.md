@@ -47,7 +47,7 @@ Racoon is not affiliated with any services listed above in any way, it just fetc
  
  We are open for features suggestions 😄
  
-## Inegration with your own app
+## Integration with your own app
 
  Racoon can be integrated in any web app, just pass parameter ```?url=MEDIA_URL_HERE``` to ```https://shailendramaurya.github.io/racoon```, and it will start download..... Also, if you want to download audio only pass ```?audio=true```. Thank you !
 
