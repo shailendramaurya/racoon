@@ -39,7 +39,9 @@ Racoon is a media downloader that allows you to easily download videos, posts fr
   - vine archive
   - vk video & clips
 
-Racoon is not affiliated with any services listed above in any way, it just fetches the data which are publically available on internet via api
+Racoon is not affiliated with any services listed above in any way, it just fetches the data which are publically available on internet via api.
+
+*- Special thanks to [cobalt](https://github.com/imputnet/cobalt) for backend API*
 
 ## Features Yet to Implement
  
