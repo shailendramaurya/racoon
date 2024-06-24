@@ -1,4 +1,4 @@
-# Racoon
+# QuickGrab
 
 A media downloader written in HTML, JS with pico css.
 
@@ -6,12 +6,12 @@ A media downloader written in HTML, JS with pico css.
 
 ## Author
 
-Shailendra Maurya  
-Github Profile: [shailendramaurya](https://github.com/shailendramaurya)
+Abdoulmerlic-Tech 
+Github Profile: [Abdoulmerlic](https://github.com/Abdoulmerlic)
 
 ## Description
 
-Racoon is a media downloader that allows you to easily download videos, posts from social media. It is built using HTML, CSS & JS with pico css.
+QuickGrab is a media downloader that allows you to easily download videos, posts from social media. It is built using HTML, CSS & JS with pico css.
 
 ** Currently in beta, & UI is not well optimised for desktops **
 
