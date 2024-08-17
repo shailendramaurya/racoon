@@ -55,7 +55,7 @@ audioCheckbox.addEventListener("change", () => {
 
 function submit(x) {
 	if (!x) return;
-	var api = "https://co.wuk.sh/api/json";
+	var api = "https://api.cobalt.tools/api/json";
 	var cURL = extractURL(x);
 	var url = encodeURIComponent(cURL);
 
