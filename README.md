@@ -2,7 +2,9 @@
 
 A media downloader written in HTML, JS with pico css.
 
-### Status: functioning
+### Status: non-functioning
+
+Due to removal of Cobalt's Public API [read more](https://github.com/imputnet/cobalt/tree/main/api#running-your-own-instance)
 
 ## Author
 
